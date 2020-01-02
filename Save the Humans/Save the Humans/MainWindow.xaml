@@ -15,14 +15,13 @@
     </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="160"/>
+            <ColumnDefinition Width="140"/>
             <ColumnDefinition/>
             <ColumnDefinition Width="160"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="140"/>
             <RowDefinition/>
-            <RowDefinition Height="160"/>
+            <RowDefinition Height="150"/>
         </Grid.RowDefinitions>
         <Button x:Name="startButton" Content="Start!" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" Click="StartButton_Click"/>
         <ProgressBar x:Name="progressBar" Grid.Column="1" Grid.Row="2" Height="20"/>
@@ -30,7 +29,7 @@
             <TextBlock TextWrapping="Wrap" Text="Avoid These" HorizontalAlignment="Center" VerticalAlignment="Center"/>
             <ContentControl Content="ContentControl" Template="{DynamicResource EnemyTemplate}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         </StackPanel>
-        <Canvas x:Name="playArea" Grid.Column="1" Grid.Row="1">
+        <Canvas x:Name="playArea" Grid.ColumnSpan="3">
             <Canvas.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="Black" Offset="0"/>
