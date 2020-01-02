@@ -9,11 +9,35 @@
     <Window.Resources>
         <ControlTemplate x:Key="EnemyTemplate" TargetType="{x:Type ContentControl}">
             <Grid>
-                <Ellipse HorizontalAlignment="Left" Stroke="Black" VerticalAlignment="Top" Width="100" Height="100" Fill="Red"/>
+                <Ellipse Fill="Gray" Stroke="Black" Height="100" Width="75"/>
+                <Ellipse Fill="Black" Stroke="Black" Height="35"  Width="25"
+                         VerticalAlignment="Top" HorizontalAlignment="Center"  
+                         Margin="40,20,70,0" RenderTransformOrigin="0.5,0.5">
+                    <Ellipse.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform AngleX="10"/>
+                            <RotateTransform/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Ellipse.RenderTransform>
+                </Ellipse>
+                <Ellipse Fill="Black" Stroke="Black" Height="35"  Width="25"
+                         VerticalAlignment="Top" HorizontalAlignment="Center"  
+                         Margin="70,20,40,0" RenderTransformOrigin="0.5,0.5">
+                    <Ellipse.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform AngleX="-10"/>
+                            <RotateTransform/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Ellipse.RenderTransform>
+                </Ellipse>
             </Grid>
         </ControlTemplate>
     </Window.Resources>
-    <Grid>
+    <Grid x:Name="grid">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="140"/>
             <ColumnDefinition/>
@@ -27,21 +51,21 @@
         <ProgressBar x:Name="progressBar" Grid.Column="1" Grid.Row="2" Height="20"/>
         <StackPanel Grid.Column="2" Orientation="Vertical" Grid.Row="2">
             <TextBlock TextWrapping="Wrap" Text="Avoid These" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-            <ContentControl Content="ContentControl" Template="{DynamicResource EnemyTemplate}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <ContentControl x:Name="enemy" Content="ContentControl" Template="{DynamicResource EnemyTemplate}" HorizontalAlignment="Center" VerticalAlignment="Center" MouseEnter="Enemy_MouseEnter"/>
         </StackPanel>
-        <Canvas x:Name="playArea" Grid.ColumnSpan="3">
+        <Canvas x:Name="playArea" Grid.ColumnSpan="3" MouseMove="PlayArea_MouseMove" MouseLeave="PlayArea_MouseLeave">
             <Canvas.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="Black" Offset="0"/>
                     <GradientStop Color="#FFA640EE" Offset="1"/>
                 </LinearGradientBrush>
             </Canvas.Background>
-            <StackPanel x:Name="human" Orientation="Vertical">
+            <StackPanel x:Name="human" Orientation="Vertical" MouseDown="Human_MouseDown">
                 <Ellipse Fill="White" Height="10" Width="10"/>
                 <Rectangle Fill="White" Height="25" Width="10"/>
             </StackPanel>
-            <TextBlock x:Name="gameOverText" TextWrapping="Wrap" Text="Game Over" FontFamily="Arial Black" FontSize="100"/>
-            <Rectangle x:Name="target" Height="50" Canvas.Left="190" Canvas.Top="90" Width="50" RenderTransformOrigin="0.5,0.5">
+            <TextBlock x:Name="gameOverText" TextWrapping="Wrap" Text="Game Over" FontFamily="Arial Black" FontSize="100" HorizontalAlignment="Center" VerticalAlignment="Center" RenderTransformOrigin="0.489,0.565" Canvas.Left="154" Canvas.Top="125"/>
+            <Rectangle x:Name="target" Height="50" Canvas.Left="190" Canvas.Top="90" Width="50" RenderTransformOrigin="0.5,0.5" MouseEnter="Target_MouseEnter">
                 <Rectangle.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform/>
